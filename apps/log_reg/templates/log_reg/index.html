@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Login or Register!</title>
+</head>
+<body>
+
+<div id="errors">
+	{% for message in messages %}
+		<p>{{ message }}</p>
+	{% endfor %}
+</div>
+	<form action="/register" method="post">
+		<h2>Register</h2>
+			{% csrf_token %}
+			<label for="first_name">First Name</label>
+			<input type="text" name="first_name">
+			<label for="username">Alias</label>
+			<input type="text" name="username">
+			<label for="email">Email</label>
+			<input type="email" name="email">
+			<label for="password">Password</label>
+			<input type="password" name="password">
+			<label for="confirm">Confirm Password</label>
+			<input type="password" name="confirm">
+			<label for="date">Birthday</label>
+			<input type="date" name="date" value="2016-08-01">
+
+
+			<button>Register</button>
+		</fieldset>
+	</form>
+
+	<form action="/login" method="post">
+		<h2>Log In</h2>
+			{% csrf_token %}
+			<label for="username">Username</label>
+			<input type="text" name="username">
+			<label for="password">Password</label>
+			<input type="password" name="password">
+			<button>Login</button>
+		</fieldset>
+	</form>
+</body>
+</html>

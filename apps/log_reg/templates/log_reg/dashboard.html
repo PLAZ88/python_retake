@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Dashboard</title>
+</head>
+<body>
+	<a href="/logout">Logout</a>
+	<h2>Hello, {{request.session.user }}!</h2>
+
+	<h4>Here is a list of your friends!</h4>
+	<table>
+		<tr>
+			<th>Alias</th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			{% for friend in my_friends %}
+			<td>Friend ID: {{friend.id}}</td>
+			<td>
+				<form action='user/remove/{{friend.id}}' method='POST'>
+				{% csrf_token %}
+				<input id="submit" type='submit' value='Remove Friend'>
+				</form>
+			</td>
+		</tr>
+			{% endfor %}
+	</table>
+	<br><br>
+	<h4>Other users not on your list</h4>
+	<table>
+		<tr>
+			<th>Alias</th>
+			<th> </th>
+			<th>Action</th>
+		</tr>
+		<tr>
+			{% for user in users %}
+			<td>{{user.first_name}}</td>
+			<td>{{user.friend_id}}</td>
+			<td><a href="/user/{{user.id}}">View Profile</a>
+			<td>
+				<form action='user/process' method='POST'>
+				{% csrf_token %}
+				<input id="submit" type='submit' value='Add Friend'>
+				</form>
+			</td>
+		</tr>
+			{% endfor %}
+	</table>
+</body>
+</html>
+
+

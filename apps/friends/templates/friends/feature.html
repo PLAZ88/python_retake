@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Friend Profile</title>
+</head>
+<body>
+	<a href="/friends">Home</a>
+	<a href="/logout">Logout</a>
+
+	{% for user in users %}
+	<h1> {{user.username}}'s Profile</h1>
+	<p> Name: {{user.first_name}}</p>
+	<p> Email: {{user.email}}</p>
+	{% endfor %}
+
+</body>
+</html>
